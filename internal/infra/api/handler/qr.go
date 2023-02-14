@@ -2,7 +2,6 @@ package handler
 
 import (
 	"net/http"
-	"os"
 
 	"github.com/labstack/echo/v4"
 	"qr-basic-system/internal/app"
@@ -37,7 +36,7 @@ func (q *qr) Generate(cntx echo.Context) error {
 		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
 	}
 
-	defer os.Remove(name)
+	//defer os.Remove(name)
 
-	return cntx.Inline(name, name)
+	return cntx.JSON(http.StatusCreated, name)
 }
